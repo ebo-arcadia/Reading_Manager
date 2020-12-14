@@ -18,6 +18,15 @@
             <%= f.submit "Create an account" %>
             
         <% end %>
+
+        <% if @reader.errors.any? %>
+            <ul>
+                <% @reader.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        <% end %>
+
     </header>
 
 

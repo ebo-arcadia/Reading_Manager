@@ -4,14 +4,14 @@ class Reader < ApplicationRecord
 
     has_secure_password
 
-    # validates :username, :email, :password, presence: true
+    validates_presence_of :username, :email, :password
 
-    validates :username, presence: { message: 'Please enter a valid username' }
-    validates :email, presence: { message: 'Please enter a valid email' }
-    validates :password, presence: { message: 'Please enter a valid password' }
+    validates :username, presence: true
+    validates :email, presence: true
+    validates :password, presence: true
 
-    validates :username, uniqueness: { message: 'This username is taken, please enter another one'}
-    validates :email, uniqueness: { message: 'This email is taken, please enter another one'}
+    validates :username, uniqueness: true
+    validates :email, uniqueness: true
     validates :password, length: { in: 8..20 }
 
     

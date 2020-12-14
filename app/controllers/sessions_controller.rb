@@ -9,8 +9,9 @@ class SessionsController < ApplicationController
     end 
 
     def create
-        @reader = Reader.find_by(email: params[:reader][:email])
-        if @reader && @reader.authenticate(params[:reader][:password])
+        # raise params.inspect
+        @reader = Reader.find_by(email: params[:email])
+        if @reader && @reader.authenticate(params[:password])
             session[:reader_id] = @reader.id
             redirect_to reader_path(@reader)
         else 
@@ -20,7 +21,7 @@ class SessionsController < ApplicationController
 
     def destroy
         session.delete :reader_id
-        redirect_to login_path
+        redirect_to '/'
     end 
 
 end

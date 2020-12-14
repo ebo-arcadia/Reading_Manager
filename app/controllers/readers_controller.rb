@@ -4,6 +4,10 @@ class ReadersController < ApplicationController
         @reader = Reader.new
     end 
 
+    def index
+        @readers = Reader.all
+    end 
+
     def create
         @reader = Reader.new(reader_params)
         if @reader.save
