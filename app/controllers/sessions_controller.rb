@@ -10,13 +10,12 @@ class SessionsController < ApplicationController
 
     def create
         # raise params.inspect
-        @reader = Reader.find_by(email: params[:reader][:email])
-        if @reader && @reader.authenticate(params[:reader][:password])
+        @reader = Reader.find_by(email: params[:email])
+        if @reader && @reader.authenticate(params[:password])
             session[:reader_id] = @reader.id
             redirect_to reader_path(@reader)
         else 
-            # flash[:message] = "login credential is incorrect"
-            render :new
+            redirect_to '/login'
         end 
     end 
 
