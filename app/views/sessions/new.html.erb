@@ -1,13 +1,17 @@
 <section>
     <header>
-        <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
-            <h2>Username: <%= text_field_tag :username %></h2>
+        <h1>Sign in</h1>
+        <%= form_for @reader do |f| %>
+            <%= f.label :username %>
+            <%= f.text_field :username %>
                 <br><br>
-            <h2>Email: <%= text_field_tag :email %></h2>
+            <%= f.label :email %>
+            <%= f.email_field :email %>
                 <br><br>
-            <h2>Password: <%= password_field_tag :password %></h2>
+            <%= f.label :password %>
+            <%= f.password_field :password %>
                 <br><br>
-            <%= submit_tag "Sign in"%>
+            <%= f.submit "Sign in"%>
         <% end %>
     </header>
 
