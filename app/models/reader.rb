@@ -2,6 +2,8 @@ class Reader < ApplicationRecord
     has_many :books
     has_many :lists, through: :books
 
+    has_secure_password
+
     # validates :username, :email, :password, presence: true
 
     validates :username, presence: { message: 'Please enter a valid username' }
@@ -12,4 +14,5 @@ class Reader < ApplicationRecord
     validates :email, uniqueness: { message: 'This email is taken, please enter another one'}
     validates :password, length: { in: 8..20 }
 
+    
 end

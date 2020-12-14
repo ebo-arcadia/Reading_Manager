@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'sessions/welcome'
+  root to: 'sessions#welcome'
 
   get 'signup', to: 'reader#new'
   get '/login', to: 'sessions#new'
@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   resources :lists
   resources :books
   resources :readers
-  
+
 end
