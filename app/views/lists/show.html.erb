@@ -11,5 +11,24 @@
     <%= link_to "Create a new book for this list", new_list_book_path(@list) %>
 </p>
 
+<h2>Add a book to this list</h2>
+<%= form_with model: [@list, @list.books.build ] do |form| %>
+    <p>
+        <%= form.label :title %>
+        <%= form.text_field :title%>
+    </p>
+    <p>
+        <%= form.label :author %>
+        <%= form.text_field :author %>
+    </p>
+    <p>
+        <%= form.label :note %>
+        <%= form.text_field :note %>
+    </p>
+    <p>
+        <%= form.submit "Create book" %>
+    </p>
+<% end %>
+
 
 
