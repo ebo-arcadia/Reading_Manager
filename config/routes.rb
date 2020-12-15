@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   # '/lists/:id/books'
   resources :lists do
-    resources :books
+    resources :books, shallow: true
   end 
 
   # '/readers/:id/books'

@@ -1,1 +1,7 @@
-<%= @books %>
+<h1>Display all books</h1>
+
+<% @books.each do |book| %>
+    <li><%= book.title %></li>
+    <li><%= book.author %></li>
+    <li><%= book.note %></li>
+<%= end %>
