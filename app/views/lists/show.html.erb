@@ -1,0 +1,15 @@
+<h1><%= @list.title %></h1>
+
+<div><%= @list.description %></div>
+
+<p>
+    <%= link_to "See all books in this list", list_book_path(@list) %>
+</p>
+
+
+<p>
+    <%= link_to "Create a new book for his list", new_list_book_path(@list) %>
+</p>
+
+
+

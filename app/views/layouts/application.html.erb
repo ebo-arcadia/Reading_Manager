@@ -15,7 +15,8 @@
     
       <% if logged_in? %>
       <%= link_to "Create a new list", new_list_path %>
-      <%= link_to "My list", lists_path %>
+      <%= link_to "My lists", lists_path %>
+      <%= link_to "Add a new book", new_book_path %>
       <%= link_to 'Logout', logout_path %>
       <% else %>
       <%= link_to "Sign up!", signup_path %>
