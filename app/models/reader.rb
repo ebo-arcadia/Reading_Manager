@@ -16,3 +16,8 @@ class Reader < ApplicationRecord
 
     
 end
+
+'/readers/:id/lists'
+'/readers/:id/books'
+
+'/lists/:id/books'

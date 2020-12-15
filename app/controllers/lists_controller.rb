@@ -5,7 +5,7 @@ class ListsController < ApplicationController
     end 
 
     def create
-        @list = current_user.lists.build(list_params)
+        @list = current_reader.lists.build(list_params)
         if @list.valid?
             @list.save
             redirect_to lists_path
