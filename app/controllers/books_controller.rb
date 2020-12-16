@@ -14,12 +14,9 @@ class BooksController < ApplicationController
     end 
 
     def create
-        @book = current_reader.books.build(book_params)
-        if @book.save
-            redirect_to books_path
-        else
-            render :new
-        end 
+        @list = List.find_by(id: params(:list_id))
+        @book = @list.books.create(book_params)
+        redirect_to list_path(@list)
     end 
 
     def show 

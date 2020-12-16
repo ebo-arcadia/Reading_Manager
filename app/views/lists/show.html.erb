@@ -1,34 +1,48 @@
 <h1><%= @list.title %></h1>
+<p><%= @list.description %></p>
 
-<div><%= @list.description %></div>
+<ul>
+    <li><%= link_to "Edit this list", edit_list_path(@list) %></li>
+    <li><%= link_to "Delete this list", list_path(@list), method: :delete, data: { confirm: "Are you sure to delete this list?"} %></li>
+</ul>
 
-<p>
-    <%= link_to "See books belongs to this list only", list_books_path(@list) %>
-</p>
-
-
-<p>
-    <%= link_to "Create a new book for this list", new_list_book_path(@list) %>
-</p>
+<h2>Books in this list</h2>
+    <% @list.books.each do |book| %>
+        <p>
+            <strong>Book title: </strong>
+            <%= book.title %>
+        </p>
+        <p>
+            <strong>Book author: </strong>
+            <%= book.author %>
+        </p>
+        <p>
+            <strong>Note: </strong>
+            <%= book.note %>
+        </p>
+    <% end %>
 
 <h2>Add a book to this list</h2>
-<%= form_with model: [@list, @list.books.build ] do |form| %>
-    <p>
-        <%= form.label :title %>
-        <%= form.text_field :title%>
-    </p>
-    <p>
-        <%= form.label :author %>
-        <%= form.text_field :author %>
-    </p>
-    <p>
-        <%= form.label :note %>
-        <%= form.text_field :note %>
-    </p>
-    <p>
-        <%= form.submit "Create book" %>
-    </p>
-<% end %>
+    <%= form_with model: [ @list, @list.books.build ] do |form| %>
+        <p>
+            <%= form.label :title %>
+            <%= form.text_field :title%>
+        </p>
+        <p>
+            <%= form.label :author %>
+            <%= form.text_field :author %>
+        </p>
+        <p>
+            <%= form.label :note %>
+            <%= form.text_field :note %>
+        </p>
+        <p>
+            <%= form.submit "Create book" %>
+        </p>
+    <% end %>
+
+    <h2>See all books</h2>
+    <%= link_to "All books", list_books_path(@list) %>
 
 
 

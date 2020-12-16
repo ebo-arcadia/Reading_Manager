@@ -1,16 +1,26 @@
 <h1>New book</h1>
 
-<%= form_for(@book) do |f| %>
+<%= form_for @list.books.build do |f|%>
+  <%= f.hidden_field :list_id %>
+  <p>
+    <%= f.collection_select :list_id, List.all, :id, :username, include_blank: "Choose a list" %>
+    </p>
 
-    <%= f.label :title %><br>
-    <%= f.text_field :title %><br>
-
-    <%= f.label :author %><br>
-    <%= f.text_area :author %><br>
-
-    <%= f.label :note %><br>
-    <%= f.text_area :note %><br>
-
+    <p>
+        <%= f.label :title %><br>
+        <%= f.text_field :title %><br>
+    </p>
+    <br>
+    <p>
+        <%= f.label :author %><br>
+        <%= f.text_area :author %><br>
+    </p>
+    <br>
+    <p>
+        <%= f.label :note %><br>
+        <%= f.text_area :note %><br>
+    </p>
+    <br>
     <%= f.submit "Create book" %>
 
 <% end %>
