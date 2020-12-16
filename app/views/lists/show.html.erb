@@ -1,5 +1,6 @@
-<h1><%= @list.title %></h1>
-<p><%= @list.description %></p>
+<h2>List Title: <%= @list.title %></h2>
+   
+<h2>List Description: <%= @list.description %></h2>
 
 <ul>
     <li><%= link_to "Edit this list", edit_list_path(@list) %></li>

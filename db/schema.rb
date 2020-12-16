@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_033915) do
+ActiveRecord::Schema.define(version: 2020_12_16_070148) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2020_12_14_033915) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "reader_id"
+    t.index ["reader_id"], name: "index_lists_on_reader_id"
   end
 
   create_table "readers", force: :cascade do |t|
@@ -59,4 +61,5 @@ ActiveRecord::Schema.define(version: 2020_12_14_033915) do
   add_foreign_key "books", "readers"
   add_foreign_key "list_genres", "genres"
   add_foreign_key "list_genres", "lists"
+  add_foreign_key "lists", "readers"
 end

@@ -14,7 +14,8 @@ class BooksController < ApplicationController
     end 
 
     def create
-        @list = List.find_by(id: params(:list_id))
+        raise params.inspect
+        @list = List.find(params(:list_id))
         @book = @list.books.create(book_params)
         redirect_to list_path(@list)
     end 
@@ -27,6 +28,7 @@ class BooksController < ApplicationController
         @book = Book.find_by(id: params[:id])
     end 
 
+    private
     def book_params
         params.require(:book).permit(:title, :author, :note)
     end 

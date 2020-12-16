@@ -7,8 +7,7 @@ class ListsController < ApplicationController
 
     def create
         @list = current_reader.lists.build(list_params)
-        if @list.valid?
-            @list.save
+        if @list.save
             redirect_to list_path(@list)
         else
             render :new
