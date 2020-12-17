@@ -1,14 +1,17 @@
 class ListsController < ApplicationController
 
+    def index 
+        @lists = List.all
+    end 
+
     def new 
         @list = List.new
-        @list.books.build
     end 
 
     def create
         @list = current_reader.lists.build(list_params)
         if @list.save
-            redirect_to list_path(@list)
+            redirect_to lists_path
         else
             render :new
         end 

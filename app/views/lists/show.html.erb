@@ -24,7 +24,9 @@
     <% end %>
 
 <h2>Add a book to this list</h2>
-    <%= form_with model: [ @list, @list.books.build ] do |form| %>
+    <%= form_for @list.books.build do |form| %>
+        <%= form.hidden_field :list_id %>
+
         <p>
             <%= form.label :title %>
             <%= form.text_field :title%>
@@ -38,7 +40,7 @@
             <%= form.text_field :note %>
         </p>
         <p>
-            <%= form.submit "Create book" %>
+            <%= form.submit "Create a book" %>
         </p>
     <% end %>
 

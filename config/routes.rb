@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   post '/logout', to: 'sessions#destroy'
   
-  resources :genres
-  resources :lists
+  # resources :readers
+  # resources :lists
   resources :books
-  resources :readers
+  resources :genres
 
   # nested routes
 
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # shallow routing nesting only what is necessary
   # in this case, reader_id is important
   resources :readers do
-    resources :lists, shallow: true
+    resources :lists, only: [:new, :create, :index]
 
   end 
 
