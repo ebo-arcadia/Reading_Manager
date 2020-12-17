@@ -1,1 +1,7 @@
-<h1>All lists</h1>
+<%= a_reader_or_all_readers_reading_list %>
+
+<ul>
+    <% @lists.each do |list| %>
+    <li>List Name: <%= link_to list.title %> Description: <%= list.description %></li>
+    <% end %>
+</ul>

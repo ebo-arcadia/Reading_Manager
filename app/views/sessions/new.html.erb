@@ -1,17 +1,15 @@
-<section>
-    <header>
-        <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
-            <h2>Username: <%= text_field_tag :username %></h2>
-                <br><br>
-            <h2>Email: <%= text_field_tag :email %></h2>
-                <br><br>
-            <h2>Password: <%= password_field_tag :password %></h2>
-                <br><br>
-            <%= submit_tag "Sign in"%>
-        <% end %>
-    </header>
+<h1>User login</h1>
 
-    <footer>
-    </footer>
-</section>
+<%= flash[:message] if flash[:message] %>
+
+<%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
+    <h2>Username: <%= text_field_tag :username %></h2>
+        <br><br>
+    <h2>Email: <%= text_field_tag :email %></h2>
+        <br><br>
+    <h2>Password: <%= password_field_tag :password %></h2>
+        <br><br>
+    <%= submit_tag "Sign in"%>
+    
+<% end %>
 

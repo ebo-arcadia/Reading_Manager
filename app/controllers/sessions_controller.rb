@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
             session[:reader_id] = @reader.id
             redirect_to reader_path(@reader)
         else 
+            flash[:message] = 'Incorrect log in. Please try again.'
             redirect_to '/login'
         end 
     end 

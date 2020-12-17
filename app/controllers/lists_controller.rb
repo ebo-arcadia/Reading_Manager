@@ -18,8 +18,10 @@ class ListsController < ApplicationController
     end 
 
     def index 
-        if params[:reader_id] && @reader = Reader.find_by(params[:reader_id])
-            @lists = @reader.lists
+        if params[:reader_id]
+            if @reader = Reader.find_by(id: params[:reader_id])
+                @lists = @reader.lists
+            end 
         else 
             @error = "Reader does not exist" if params[:reader_id]
             @lists = List.includes(:reader)
@@ -27,7 +29,7 @@ class ListsController < ApplicationController
     end 
 
     def show
-        @list = List.find_by(id: params[:id])
+        @list = List.find_by_id(params[:id])
         redirect_to lists_path if !@list
     end 
 

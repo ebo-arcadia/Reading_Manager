@@ -5,7 +5,6 @@ class ReadersController < ApplicationController
     end 
 
     def index
-        @readers = Reader.all
     end 
 
     def create
@@ -14,7 +13,7 @@ class ReadersController < ApplicationController
             session[:reader_id] = @reader.id
             redirect_to reader_path(@reader)
         else
-            render 'readers/new'
+            render :new
         end 
     end 
 

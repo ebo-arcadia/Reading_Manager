@@ -1,6 +1,12 @@
-<h1>New list</h1>
+<h1>Create a new reading list</h1>
 
-<%= render partial: 'lists/errors', locals: {list: @list} %>
+<% if @list.errors.any? %>
+    <ul>
+        <% @list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
 
 <%= form_for(@list) do |f| %>
 
@@ -10,6 +16,6 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %><br>
 
-    <%= f.submit "Create list" %>
+    <%= f.submit %>
 
 <% end %>
