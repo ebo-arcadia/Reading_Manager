@@ -1,5 +1,7 @@
 <h1>New list</h1>
 
+<%= render partial: 'lists/errors', locals: {list: @list} %>
+
 <%= form_for(@list) do |f| %>
 
     <%= f.label :title %><br>

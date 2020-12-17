@@ -1,11 +1,11 @@
 class ListsController < ApplicationController
 
-    def index 
-        @lists = List.all
-    end 
-
     def new 
-        @list = List.new
+        if params[:reader_id] && @reader = Reader.find_by(params[:reader_id])
+            @list = @reader.posts.build
+        else 
+            @list = List.new
+        end 
     end 
 
     def create
@@ -17,8 +17,18 @@ class ListsController < ApplicationController
         end 
     end 
 
+    def index 
+        if params[:reader_id] && @reader = Reader.find_by(params[:reader_id])
+            @lists = @reader.lists
+        else 
+            @error = "Reader does not exist" if params[:reader_id]
+            @lists = List.includes(:reader)
+        end 
+    end 
+
     def show
         @list = List.find_by(id: params[:id])
+        redirect_to lists_path if !@list
     end 
 
 
