@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   root to: 'sessions#welcome'
 
-  get 'signup', to: 'readers#new'
+  get '/signup', to: 'readers#new'
+  post '/signup', to: 'readers#create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
@@ -10,22 +11,22 @@ Rails.application.routes.draw do
   
   # resources :readers
   # resources :lists
-  resources :books
-  resources :genres
+
+  resources :genres, only: [:index, :show]
 
   # nested routes
 
+   # '/lists/:id/books'
+  resources :lists do
+    resources :books
+  end 
+  resources :books
   # '/readers/:id/lists'
   # shallow routing nesting only what is necessary
   # in this case, reader_id is important
+  # because list is expected to be created for a particular reader
   resources :readers do
     resources :lists, only: [:new, :create, :index]
-
-  end 
-
-  # '/lists/:id/books'
-  resources :lists do
-    resources :books
   end 
 
   # '/readers/:id/books'

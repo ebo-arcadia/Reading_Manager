@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ReadingManager</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Stock Market Price Watch</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
-
   <body>
 
-    <div>
+  <div>
     
       <% if logged_in? %>
-      <%= link_to "Create a new list", new_list_path %>
-      <%= link_to "My lists", lists_path %>
-      
-      <%= link_to 'Logout', logout_path %>
+        <%= link_to "Create a new reading list", new_list_path %> ||
+        <%= link_to "My reading lists", reader_lists_path(current_reader) %> || 
+        <%= link_to "All reading lists", lists_path %> ||
+        <%= link_to "Add a book to the list", new_book_path %> ||
+        <%= link_to "All genres", genres_path %> ||
+        <%= link_to "Backt to reader home page", reader_path(current_reader) %> ||
+        <%= link_to 'Logout', logout_path %> || 
       <% else %>
-      <%= link_to "Sign up!", signup_path %>
-      <%= link_to "Log in!", login_path %>
+        <%= link_to "Sign up", signup_path %> ||
+        <%= link_to "Log in", login_path %> 
       <% end %>
 
     </div>
+
     <div>
       <%= @error %>
     </div>
+
     <%= yield %>
+
   </body>
 </html>
