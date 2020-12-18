@@ -32,7 +32,25 @@ class ListsController < ApplicationController
         @list = List.find_by_id(params[:id])
         redirect_to lists_path if !@list
     end 
+    
+    def edit
+        @list = List.find_by(id: params[:id])
+        if !@list || @list.reader != current_reader
+            redirect_to lists_path
+        end 
+    end 
 
+    def update
+        @list = List.find_by(id: params[:id])
+        if !@list || @list.reader != current_reader
+            redirect_to lists_path
+        end 
+        if @list.update(list_params)
+            redirect_to list_path(@list)
+        else 
+            render :edit
+        end 
+    end 
 
     def list_params
         params.require(:list).permit(:title, :description)

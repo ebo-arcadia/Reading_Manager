@@ -4,4 +4,8 @@
 <h2>Book author: <%= @book.author %></h2><br>
 <h2>Book note: <%= @book.note %></h2><br>
 
+<% if @book.reader == current_reader %>
+    <%= link_to "Edit this book", edit_book_path(@book) %>
+<% end %>
+
 <h3>Back to the reading list this book belongs: <%= link_to @book.list.title, list_path(@book.list_id) %><h3>

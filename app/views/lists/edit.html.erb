@@ -1,0 +1,21 @@
+<h1>Edit reading list <%= @list.title %></h1>
+
+<% if @list.errors.any? %>
+    <ul>
+        <% @list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_for(@list) do |f| %>
+
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+
+    <%= f.label :description %><br>
+    <%= f.text_area :description %><br>
+
+    <%= f.submit %>
+
+<% end %>
