@@ -1,0 +1,33 @@
+<h1>Edit this book: <%= @book.title %>
+
+<% if @book.errors.any? %>
+    <ul>
+        <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_for([@book]) do |f|%>
+    <p>
+        <%= f.label :list %>
+        <%= f.collection_select :list_id, List.all, :id, :title %>
+    </p>
+    <p>
+        <%= f.label :title %><br>
+        <%= f.text_field :title %><br>
+    </p>
+    <br>
+    <p>
+        <%= f.label :author %><br>
+        <%= f.text_area :author %><br>
+    </p>
+    <br>
+    <p>
+        <%= f.label :note %><br>
+        <%= f.text_area :note %><br>
+    </p>
+    <br>
+    <%= f.submit %>
+
+<% end %>
