@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+    skip_before_action :verify_authenticity_token
 
     def new 
         if params[:reader_id] && @reader = Reader.find_by(params[:reader_id])
@@ -52,9 +53,10 @@ class ListsController < ApplicationController
         end 
     end 
 
-    def destory
-        @list.delete
-        redirect_to list_path
+    def destroy
+        @list = List.find(params[:id])
+        @list.destroy
+        redirect_to lists_path
     end 
 
     def list_params

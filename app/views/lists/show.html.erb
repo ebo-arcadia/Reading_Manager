@@ -4,7 +4,16 @@
 
 <% if @list.reader == current_reader %>
     <li><%= link_to "Edit this list", edit_list_path(@list) %></li>
-    <li><%= link_to "Delete this list", list_path(@list), method: :delete, data: { confirm: "Are you sure to delete this list?"} %></li>
+    <li><%= link_to "Delete this list", list_path(@list), controller: 'lists', action: 'destroy', method: 'delete', data: { confirm: "Are you sure to delete this list?"} %></li>
+    
+    <p>Delete this list method 2...to be constructed...
+        <%= button_to "Delete", list_path(@list), method: :delete %>
+    </p>
+
+<% end %>
+
+<% if !@list.books.empty? %>
+    <p><%= link_to "View all books", list_books_path(@list) %></p>
 <% end %>
 
 <h2>Books in this list</h2>

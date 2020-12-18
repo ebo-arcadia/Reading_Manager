@@ -6,6 +6,10 @@
 
 <% if @book.reader == current_reader %>
     <%= link_to "Edit this book", edit_book_path(@book) %>
+    <p>Delete this book
+        <%= button_to "Delete", list_book_path(@book.list, @book), method: :delete %>
+    </p>
+    
 <% end %>
 
 <h3>Back to the reading list this book belongs: <%= link_to @book.list.title, list_path(@book.list_id) %><h3>
