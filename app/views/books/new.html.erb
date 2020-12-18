@@ -1,5 +1,8 @@
-<h1>Add a new book</h1>
-
+<% if @book.list %>
+    <h1>Add a new book to the reading list of <%= @book.list.title %></h1>
+<% else %>
+    <h1>Add a new book to a list<h1>
+<% end %>
 
 <% if @book.errors.any? %>
     <ul>
@@ -9,8 +12,14 @@
     </ul>
 <% end %>
 
-<%= form_for @book do |f|%>
-  <%= f.hidden_field :list_id %>
+<%= form_for([@book.list, @book]) do |f|%>
+
+    <% if !@book.list %>
+        <%= f.label :list%>
+        <%= f.collection_select :list_id, List.all, :id, :title %>
+    <% else %>
+        <%= f.hidden_field :list_id %>
+    <% end %>
 
     <p>
         <%= f.label :title %><br>
@@ -27,6 +36,6 @@
         <%= f.text_area :note %><br>
     </p>
     <br>
-    <%= f.submit "Create book" %>
+    <%= f.submit %>
 
 <% end %>

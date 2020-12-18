@@ -12,7 +12,11 @@ class BooksController < ApplicationController
     end 
 
     def new 
-        @book = Book.new
+        if params[:list_id] && @list = List.find_by(id: params[:list_id])
+            @book = @list.books.build
+        else
+            @error = "This list does not exist" if params[:list_id]
+        end 
     end 
 
     def create

@@ -1,10 +1,7 @@
 <h3>Books belong to this list</h3>
 
-    <% @list.books.each do |book| %>
-        <ul>
-            <%= link_to book.title, book_path(book) %>
-            <li><%= book.title %></li>
-            <li><%= book.author %></li>
-            <li><%= book.note %></li>
-        </ul>
-    <% end %>
+<h2>Book title: <%= @book.title %></h2><br>
+<h2>Book author: <%= @book.author %></h2><br>
+<h2>Book note: <%= @book.note %></h2><br>
+
+<h3>Back to the reading list this book belongs: <%= link_to @book.list.title, list_path(@book.list_id) %><h3>
