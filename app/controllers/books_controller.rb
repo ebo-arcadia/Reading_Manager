@@ -16,6 +16,7 @@ class BooksController < ApplicationController
             @book = @list.books.build
         else
             @error = "This list does not exist" if params[:list_id]
+            @book = Book.new
         end 
     end 
 
