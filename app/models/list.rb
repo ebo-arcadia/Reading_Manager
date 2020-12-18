@@ -1,5 +1,6 @@
 class List < ApplicationRecord
     belongs_to :reader
+    belongs_to :genre
     has_many :books
     has_many :readers, through: :books
     has_many :list_genres
@@ -17,4 +18,9 @@ class List < ApplicationRecord
             self.book_attributes.build(book: book)
         end 
     end 
+
+    def genre_attributes=(attribute)
+        self.genre = Genre.find_or_create_by(attribute) if !attribute[:name].blank?
+    end 
+    
 end

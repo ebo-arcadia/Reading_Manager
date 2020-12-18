@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # resources :readers
   # resources :lists
 
-  resources :genres, only: [:index, :show]
+  resources :genres, only: [:index, :show, :new, :create, :delete]
 
   # nested routes
 
@@ -26,8 +26,10 @@ Rails.application.routes.draw do
   # in this case, reader_id is important
   # because list is expected to be created for a particular reader
   resources :readers do
-    resources :lists, only: [:new, :create, :index]
+    resources :lists, only: [:new, :create, :index, :delete]
   end 
+
+  
 
   # '/readers/:id/books'
 

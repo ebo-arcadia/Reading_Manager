@@ -1,6 +1,7 @@
 class Reader < ApplicationRecord
     has_many :books
     has_many :lists
+    has_many :genres, through: :lists
 
     has_secure_password
 

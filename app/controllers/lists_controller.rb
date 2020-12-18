@@ -52,6 +52,11 @@ class ListsController < ApplicationController
         end 
     end 
 
+    def destory
+        @list.delete
+        redirect_to list_path
+    end 
+
     def list_params
         params.require(:list).permit(:title, :description)
     end 
