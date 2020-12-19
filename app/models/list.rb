@@ -8,19 +8,20 @@ class List < ApplicationRecord
 
     validates :title, :description, presence: true
     
-    accepts_nested_attributes_for :books
+    # accepts_nested_attributes_for :books
 
-    scope :alpha, -> { order(:title) }
+    delegate :name, to: :category
 
-    def books_attributes=(book_attributes)
-        book_attributes.values.each do |book_attribute|
-            book = Book.find_or_create_by(book_attribute)
-            self.book_attributes.build(book: book)
-        end 
-    end 
+    # scope :alpha, -> { order(:title) }
 
-    def genre_attributes=(attribute)
-        self.genre = Genre.find_or_create_by(attribute) if !attribute[:name].blank?
+    # def genre_attributes=(genre_attributes)
+    #     genre_attributes.values.each do |genre_attribute|
+    #         genre = Genre.find_or_create_by(genre_attribute)
+    #         self.genre_attributes.build(genre: genre)
+    # end 
+
+    def genre_attributes=(genre)
+        self.genre = Genre.find_or_create_by(name: genre[:name]) if !genre[:name].blank?
     end 
     
 end

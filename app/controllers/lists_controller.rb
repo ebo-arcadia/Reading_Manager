@@ -7,6 +7,7 @@ class ListsController < ApplicationController
         # else 
             @list = List.new
         # end 
+            @list.build_genre
     end 
 
     def create
@@ -39,6 +40,7 @@ class ListsController < ApplicationController
         if !@list || @list.reader != current_reader
             redirect_to lists_path
         end 
+        @list.build_genre if !@list.genre
     end 
 
     def update
@@ -60,6 +62,6 @@ class ListsController < ApplicationController
     end 
 
     def list_params
-        params.require(:list).permit(:title, :description)
+        params.require(:list).permit(:title, :description, :genre_id, genre_attributes: [:name])
     end 
 end
