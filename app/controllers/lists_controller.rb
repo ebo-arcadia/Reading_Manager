@@ -2,11 +2,11 @@ class ListsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def new 
-        if params[:reader_id] && @reader = Reader.find_by(params[:reader_id])
-            @list = @reader.posts.build
-        else 
+        # if params[:reader_id] && @reader = Reader.find_by(params[:reader_id])
+        #     @list = @reader.posts.build
+        # else 
             @list = List.new
-        end 
+        # end 
     end 
 
     def create
@@ -25,7 +25,7 @@ class ListsController < ApplicationController
             end 
         else 
             @error = "Reader does not exist" if params[:reader_id]
-            @lists = List.includes(:reader)
+            @lists = List.all
         end 
     end 
 

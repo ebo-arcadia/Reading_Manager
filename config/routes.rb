@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   # in this case, reader_id is important
   # because list is expected to be created for a particular reader
   resources :readers do
-    resources :lists, only: [:new, :create, :index, :delete]
+    resources :lists, only: [:create, :index, :delete]
   end 
 
   
