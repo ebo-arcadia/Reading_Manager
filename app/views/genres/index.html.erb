@@ -2,6 +2,11 @@
     <% @genres.each do |genre| %>
         <li>
             <%= link_to genre.name, genre_path(genre) %>
+                <ol>
+                    <% genre.lists.each do |list| %>
+                        <li><%= link_to list.title, list_path(list) %></li>
+                    <% end %>
+                </ol>
         </li>
     <% end %>
 </ul>

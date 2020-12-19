@@ -1,4 +1,6 @@
-<h1><%= @genre.name %></h1>
+<h1>
+    <%= @genre.name %> - <%= pluralize(@genre.lists.count, "lists") %>
+</h1>
 
 <ol>
     <% @genre.lists.each do |genre| %>

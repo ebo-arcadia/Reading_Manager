@@ -12,8 +12,6 @@ Rails.application.routes.draw do
   # resources :readers
   # resources :lists
 
-  resources :genres, only: [:index, :show, :new, :create, :delete]
-
   # nested routes
 
    # '/lists/:id/books'
@@ -29,7 +27,7 @@ Rails.application.routes.draw do
     resources :lists, only: [:create, :index, :delete]
   end 
 
-  
+  resources :genres, only: [:index, :show]
 
   # '/readers/:id/books'
 
