@@ -1,12 +1,6 @@
 <h1>Edit this book: <%= @book.title %>
 
-<% if @book.errors.any? %>
-    <ul>
-        <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-    </ul>
-<% end %>
+<%= render partial: "layouts/errors", locals: { object: @book } %>
 
 <%= form_for([@book]) do |f|%>
     <p>
@@ -16,7 +10,7 @@
     <p>
         <%= f.label :title %><br>
         <%= f.text_field :title %><br>
-    </p>
+    </p> 
     <br>
     <p>
         <%= f.label :author %><br>

@@ -4,13 +4,7 @@
     <h1>Add a new book to a list<h1>
 <% end %>
 
-<% if @book.errors.any? %>
-    <ul>
-        <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-    </ul>
-<% end %>
+<%= render partial: "layouts/errors", locals: { object: @book } %>
 
 <%= form_for([@book.list, @book]) do |f|%>
 

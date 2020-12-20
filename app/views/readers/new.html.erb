@@ -1,6 +1,9 @@
 <section>
     <header>
         <h1>Sign up</h1>
+
+        <%= render partial: "layouts/errors", locals: { object: @reader } %>
+
         <%= form_for(@reader) do |f| %>
 
             <%= f.label :username %><br>
@@ -17,14 +20,6 @@
                 <br>
             <%= f.submit "Create an account" %>
             
-        <% end %>
-
-        <% if @reader.errors.any? %>
-            <ul>
-                <% @reader.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-                <% end %>
-            </ul>
         <% end %>
 
     </header>

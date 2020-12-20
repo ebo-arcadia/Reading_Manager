@@ -1,12 +1,6 @@
 <h1>Edit reading list <%= @list.title %></h1>
 
-<% if @list.errors.any? %>
-    <ul>
-        <% @list.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-    </ul>
-<% end %>
+<%= render partial: "layouts/errors", locals: { object: @list } %>
 
 <%= form_for(@list) do |f| %>
 
