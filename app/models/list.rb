@@ -12,7 +12,8 @@ class List < ApplicationRecord
 
     delegate :name, to: :genre
 
-    # scope :alpha, -> { order(:title) }
+    # scope method works when active record relation is true and it can be chained to objects
+    scope :list_by_order, -> { order(:title) }
 
     # def genre_attributes=(genre_attributes)
     #     genre_attributes.values.each do |genre_attribute|

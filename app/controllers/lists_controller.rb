@@ -22,11 +22,11 @@ class ListsController < ApplicationController
     def index 
         if params[:reader_id]
             if @reader = Reader.find_by(id: params[:reader_id])
-                @lists = @reader.lists
+                @lists = @reader.lists.list_by_order
             end 
         else 
             @error = "Reader does not exist" if params[:reader_id]
-            @lists = List.all
+            @lists = List.list_by_order
         end 
     end 
 

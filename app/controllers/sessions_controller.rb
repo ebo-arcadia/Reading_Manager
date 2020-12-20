@@ -36,7 +36,6 @@ class SessionsController < ApplicationController
         reader = Reader.find_or_create_by_omniauth(auth)
         session[:reader_id] = reader.id
         redirect_to reader_path(reader)
-        binding.pry
         # if @reader.save
         #     session[:reader_id] = @reader.id
         #     redirect_to reader_path(@reader)
