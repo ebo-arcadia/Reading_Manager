@@ -10,7 +10,7 @@ class List < ApplicationRecord
     
     # accepts_nested_attributes_for :books
 
-    delegate :name, to: :category
+    delegate :name, to: :genre
 
     # scope :alpha, -> { order(:title) }
 

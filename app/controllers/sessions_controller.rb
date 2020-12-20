@@ -9,14 +9,19 @@ class SessionsController < ApplicationController
     end 
 
     def create
-        # raise params.inspect
-        @reader = Reader.find_by(email: params[:email])
-        if @reader && @reader.authenticate(params[:password])
+        if auth_hash = request.env["omniauth.auth"]
+            reader = Reader.find_or_create_by_omniauth(auth_hash)
             session[:reader_id] = @reader.id
-            redirect_to reader_path(@reader)
+            redirect_to root_path
         else 
-            flash[:message] = 'Incorrect log in. Please try again.'
-            redirect_to '/login'
+            @reader = Reader.find_by(email: params[:email])
+            if @reader && @reader.authenticate(params[:password])
+                session[:reader_id] = @reader.id
+                redirect_to reader_path(@reader)
+            else 
+                flash[:message] = 'Incorrect log in. Please try again.'
+                redirect_to '/login'
+            end 
         end 
     end 
 
