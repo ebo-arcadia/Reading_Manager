@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   post '/logout', to: 'sessions#destroy'
-  get '/auth/:provider/callback', to: 'sessions#create'
+
+  # Omniauth log in route with Google 
+  get '/auth/:provider/callback', to: 'sessions#google'
   
   # resources :readers
   # resources :lists
