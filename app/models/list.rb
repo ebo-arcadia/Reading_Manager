@@ -35,5 +35,9 @@ class List < ApplicationRecord
             errors.add(:reader_id, "can't created more than 3 reading lists per user a day")
         end
     end 
+
+    def self.search(params)
+        List.where("lists.title LIKE :term OR lists.description LIKE :term", term: "%#{params}%")
+    end 
     
 end

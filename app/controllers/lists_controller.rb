@@ -28,6 +28,10 @@ class ListsController < ApplicationController
             @error = "Reader does not exist" if params[:reader_id]
             @lists = List.list_by_order
         end 
+
+        if params[:search] && !params[:search].empty?
+            @lists = @lists.search(params[:search]).list_by_order
+        end 
     end 
 
     def show
@@ -36,7 +40,7 @@ class ListsController < ApplicationController
     end 
     
     def edit
-        @list = List.find_by(id: params[:id])
+        set_list_by_id
         if !@list || @list.reader != current_reader
             redirect_to lists_path
         end 
@@ -44,7 +48,7 @@ class ListsController < ApplicationController
     end 
 
     def update
-        @list = List.find_by(id: params[:id])
+        set_list_by_id
         if !@list || @list.reader != current_reader
             redirect_to lists_path
         end 
@@ -61,7 +65,14 @@ class ListsController < ApplicationController
         redirect_to lists_path
     end 
 
+    private
+
     def list_params
         params.require(:list).permit(:title, :description, :genre_id, genre_attributes: [:name])
     end 
+
+    def set_list_by_id
+        @list = List.find_by(id: params[:id])
+    end 
+  
 end

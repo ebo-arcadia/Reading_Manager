@@ -33,15 +33,15 @@ class BooksController < ApplicationController
     end 
 
     def show 
-        @book = Book.find_by(id: params[:id])
+        set_book
     end 
 
     def edit
-        @book = Book.find_by(id: params[:id])
+        set_book
     end 
 
     def update
-        @book = Book.find_by(id: params[:id])
+        set_book
         if @book.update(book_params)
             redirect_to book_path(@book)
         else 
@@ -50,7 +50,7 @@ class BooksController < ApplicationController
     end 
 
     def destroy
-        @book = Book.find(params[:id])
+        set_book
         @book.destroy
         redirect_to books_path
     end 
@@ -60,6 +60,10 @@ class BooksController < ApplicationController
     def book_params
         params.require(:book).permit(:list_id, :title, :author, :note)
     end 
+
+    def set_book
+        @book = Book.find_by(id: params[:id])
+    end
 
 
 end

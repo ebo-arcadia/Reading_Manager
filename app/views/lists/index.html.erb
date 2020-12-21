@@ -1,5 +1,11 @@
 <%= a_reader_or_all_readers_reading_list %>
 
+    <%= form_tag(lists_path, method: :get) do %>
+        <%= label_tag(:search, "Search List: ") %>
+        <%= text_field_tag(:search) %>
+        <%= submit_tag("Search") %>
+    <% end %>
+
 <ul>
     <% @lists.each do |list| %>
     <li>List Name: <%= link_to list.title, list_path(list) %> Description: <%= list.description %></li>
