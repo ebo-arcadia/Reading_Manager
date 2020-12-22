@@ -22,29 +22,36 @@ class SessionsController < ApplicationController
     def google
         # method 1
         # @reader = Reader.where(email: auth['info']['email']).first_or_create do |reader|
-        #     reader.username = auth['info']['first_name']
+        #     reader.username = auth['info']['name']
         #     reader.password = SecureRandom.hex
         # end 
-        
-        #method 2
-        # @reader = Reader.find_or_create_by(email: auth['info']['email']) do |reader|
-        #     reader.username = auth['info']['first_name']
-        #     reader.password = SecureRandom.hex
-        # end
-
-        # method 3
-        reader = Reader.find_or_create_by_omniauth(auth)
-        session[:reader_id] = reader.id
-        redirect_to reader_path(reader)
         # if @reader.save
         #     session[:reader_id] = @reader.id
         #     redirect_to reader_path(@reader)
         # else
         #     redirect_to root_path
         # end 
+        
+        # method 2
+        # @reader = Reader.find_or_create_by(email: access_token['info']['email']) do |reader|
+        #     reader.username = access_token['info']['first_name']
+        #     reader.password = SecureRandom.hex
+        # end
+       
+        # if @reader.save
+        #     session[:reader_id] = @reader.id
+        #     redirect_to reader_path(@reader)
+        # else
+        #     redirect_to root_path
+        # end 
+      
+        # method 3
+        @reader = Reader.find_or_create_by_omniauth(access_token)
+            session[:reader_id] = @reader.id
+            redirect_to reader_path(@reader)
     end 
 
-    def auth
+    def access_token
         request.env['omniauth.auth']
     end 
 

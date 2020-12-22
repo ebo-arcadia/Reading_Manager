@@ -1,8 +1,8 @@
 class List < ApplicationRecord
     belongs_to :reader
     belongs_to :genre
-    has_many :books
-    has_many :readers, through: :books
+    has_many :books, dependent: :destroy
+    has_many :readers, through: :books, dependent: :destroy
     # has_many :list_genres
     # has_many :genres, through: :list_genres
 
