@@ -4,7 +4,7 @@ module ListsHelper
         if @reader
           content_tag(:h1, "#{@reader.username}'s reading list:")
         else
-          content_tag(:h2, "All reading lists")
+          content_tag(:h1, "All reading lists")
         end
       end
 

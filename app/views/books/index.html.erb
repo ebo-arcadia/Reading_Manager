@@ -6,6 +6,6 @@
 
 <ul>
     <% @books.each do |book| %>
-        <li>Book title: <%= book.title %> | Author: <%= book.author %> | Note by reader: <%= book.note %> | Created by <%= book.reader.username %>.</li>
+        <li>Book title: <%= link_to book.title, book_path(book) %> | Author: <%= book.author %> | Note by reader: <%= book.note %> | Created by <%= book.reader.username %>.</li>
     <% end %>
 </ul>

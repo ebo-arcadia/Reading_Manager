@@ -3,7 +3,7 @@
 </h1>
 
 <ol>
-    <% @genre.lists.each do |genre| %>
-        <li><%= link_to genre.name, genre_path(genre) %></li>
+    <% @genre.lists.each do |list| %>
+        <li><%= link_to list.title, list_path(list) %></li>
     <% end %>
 </ol>
