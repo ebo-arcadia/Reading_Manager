@@ -5,11 +5,11 @@ class Reader < ApplicationRecord
 
     has_secure_password
 
-    validates_presence_of :username, :email
+    validates_presence_of :username, :email, :password
 
     validates :username, uniqueness: true
     validates :email, uniqueness: true
-    # validates :password, length: { in: 8..30 }
+    validates :password, length: { minimum: 8 }
 
 
     def self.find_or_create_by_omniauth(access_token)

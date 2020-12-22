@@ -8,21 +8,18 @@ class List < ApplicationRecord
 
     validates :title, :description, presence: true
     validates :description, length: { maximum: 10, too_long: "%{count} characters is the maximum allowed" }
-    # custom validation
+    # custom validator max reading lists a reader can create a day
     validate :daily_create_list_limit
     # accepts_nested_attributes_for :books
 
+    # enables class method genre.name is accessible to list object
     delegate :name, to: :genre
 
-    # scope method works when active record relation is true and it can be chained to objects
+    # scope method enables lists listed in alpha order
+    # it only works when active record relation is true and it can be chained to objects
     scope :list_by_order, -> { order(:title) }
 
-    # def genre_attributes=(genre_attributes)
-    #     genre_attributes.values.each do |genre_attribute|
-    #         genre = Genre.find_or_create_by(genre_attribute)
-    #         self.genre_attributes.build(genre: genre)
-    # end 
-
+    # nested attributes method accepts nested values via params
     def genre_attributes=(genre)
         self.genre = Genre.find_or_create_by(name: genre[:name]) if !genre[:name].blank?
     end 
