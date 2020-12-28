@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
-    belongs_to :reader, dependent: :destroy
-    belongs_to :list, dependent: :destroy
+    belongs_to :reader
+    belongs_to :list
     
     validates :title, presence: true
     validates :title, uniqueness: true

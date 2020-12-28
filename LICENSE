@@ -1,30 +1,3 @@
-### Reading Manager
-
-A simple web app users can create, edit, label, remove, and share reading lists. They can also add books to each list to keep them better organized. This app is built with Ruby on Rails with other assistive gems. 
-
-Some of the key features this app provides:
-
-- User identification and authentication 
-- User log in via third-party OAuth provider, such as Google
-- Password protection
-- Data validation 
-
-# Install instructions 
-
-After cloning and copying the repo on your local machine, run:
-
-```bundle install```
-
-To start the app, run your server with [http://localhost:3000/]:
-
-```http://localhost:3000/```
-
-# Contributors guide
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/thebrianemory/corneal This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
-
-# License
-
 MIT License
 
 Copyright (c) 2020 Neo_The_One
