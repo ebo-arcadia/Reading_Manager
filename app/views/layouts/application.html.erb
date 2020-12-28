@@ -7,11 +7,12 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
 
-  <div>
+  <nav>
+    <ul>
       <% if logged_in? %>
         <%= link_to "Create a new reading list", new_list_path %> ||
         <%= link_to "My reading lists", reader_lists_path(current_reader) %> || 
@@ -25,7 +26,8 @@
         <%= link_to "Sign up", signup_path %> ||
         <%= link_to "Log in", login_path %> 
       <% end %>
-    </div>
+      </ul>
+    </nav>
 
     <div>
       <%= @error %>
