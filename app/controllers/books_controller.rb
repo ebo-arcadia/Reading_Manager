@@ -1,13 +1,14 @@
 class BooksController < ApplicationController
-
+    before_action :set_book, only: [:show, :edit, :update, :destroy]
+    
     def index 
-        if params[:list_id] && @list = List.find_by(id: params[:post_id])
+        if params[:list_id] && @list = List.find_by(id: params[:list_id])
         # if params[:list_id]
             # @books = List.find(params[:list_id]).books
-            @books = @list.books
+            @books = @list.books.order_books_by_title
         else
             @error = "This list does not exist" if params[:list_id]
-            @books = Book.all
+            @books = Book.all.order_books_by_title
         end 
     end 
 
@@ -33,15 +34,12 @@ class BooksController < ApplicationController
     end 
 
     def show 
-        set_book
     end 
 
     def edit
-        set_book
     end 
 
     def update
-        set_book
         if @book.update(book_params)
             redirect_to book_path(@book)
         else 
@@ -50,7 +48,6 @@ class BooksController < ApplicationController
     end 
 
     def destroy
-        set_book
         @book.destroy
         redirect_to books_path
     end 

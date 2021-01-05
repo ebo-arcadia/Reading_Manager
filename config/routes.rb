@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   # because list is expected to be created by a particular reader
   # new action is not used as a reader should not create list for other readers
   resources :readers do
-    resources :lists, only: [:create, :index, :delete]
+    resources :lists, only: [:index]
   end 
 
   resources :genres, only: [:index, :show]

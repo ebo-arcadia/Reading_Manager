@@ -18,8 +18,6 @@ class ReadersController < ApplicationController
     end 
 
     def show
-        @reader = Reader.find_by(id: session[:reader_id])
-        redirect_to '/' if !@reader
     end 
 
     private

@@ -3,6 +3,7 @@
 <h2>Book note: <%= @book.note %></h2><br>
 
 <% if @book.reader == current_reader %>
+    
     <%= link_to "Edit this book", edit_book_path(@book) %>
     <p>Delete this book
         <%= button_to "Delete", list_book_path(@book.list, @book), method: :delete %>

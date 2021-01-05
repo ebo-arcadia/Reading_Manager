@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
     skip_before_action :verify_authenticity_token
+    before_action :set_list_by_id, only: [:edit, :update]
 
     def new 
         # if params[:reader_id] && @reader = Reader.find_by(params[:reader_id])
@@ -40,7 +41,7 @@ class ListsController < ApplicationController
     end 
     
     def edit
-        set_list_by_id
+        
         if !@list || @list.reader != current_reader
             redirect_to lists_path
         end 
@@ -48,7 +49,7 @@ class ListsController < ApplicationController
     end 
 
     def update
-        set_list_by_id
+      
         if !@list || @list.reader != current_reader
             redirect_to lists_path
         end 
